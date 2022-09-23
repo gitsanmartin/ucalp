@@ -8,16 +8,31 @@ generator client {
 
 datasource db {
 	provider = "mysql"
-	url      = env("DATABASE_URL")
+	url	= env("DATABASE_URL")
 }
 
 model Classroom {
 	@@map(name: "classroom")
-	id 				Int 		@default(autoincrement()) @id 
+	id				Int 		@default(autoincrement()) @id 
 	classroomNumber	Int? 		@unique
 	description 	String
 	createdAt 		DateTime 	@default(now())
 	upgrateAt 		DateTime 	@updatedAt
 	capacity 		Int
 	subjects 		Subject[]
+}
+
+model Subject {
+	@@map(name:"subject")
+	id 				Int 		@default(autoincrement()) @id 
+	nameSubject		String 		@db.VarChar(50)
+	duration		String 		@db.VarChar(20)
+	year			Int
+	createdAt 		DateTime 	@default(now())
+	upgrateAt 		DateTime 	@updatedAt
+	classroom_id 	Int?
+	classroom 		Classroom? 	@relation(fields: [classroom_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	professors 		SubjectAndProfessor[]
+	careers 		SubjectAndCareer[]
+	schedule		SubjectAndSchedule[]
 }

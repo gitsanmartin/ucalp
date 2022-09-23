@@ -75,3 +75,14 @@ model SubjectAndCareer {
 	career 			Career 		@relation(fields: [careerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 	@@id([subjectId, careerId])
 }
+
+model Schedule {
+	@@map(name: "schedule")
+	id				Int			@id @default(autoincrement())
+	startTime		Int
+	endTime			Int
+	day				Day
+	createdAt 		DateTime 	@default(now())
+	upgrateAt 		DateTime 	@updatedAt
+	subjects		SubjectAndSchedule[]
+}

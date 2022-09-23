@@ -6,6 +6,10 @@ async function main () {
 	await prisma.professor.createMany({
 		data: professors
 	})
+
+    await prisma.career.createMany({
+		data: careers
+	})
 }
 
 main()

@@ -10,6 +10,9 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
 
+// app.listen(PORT, '0.0.0.0', () => {
+// 	console.log(` ✅ Server UP running in PORT ${PORT} ❤️`)
+// })
 app.listen(PORT, () => {
 	console.log(` ✅ Server UP running in PORT ${PORT} ❤️`)
 })

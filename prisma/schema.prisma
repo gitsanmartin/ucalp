@@ -95,3 +95,13 @@ model SubjectAndSchedule {
 	schedule		Schedule	@relation(fields: [scheduleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 	@@id([subjectId, scheduleId])
 }
+
+enum Day {
+	MONDAY
+	TUESDAY
+	WEDNESDAY
+	THURSDAY
+	FRIDAY
+	SATURDAY
+	SUNDAY
+}

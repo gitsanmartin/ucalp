@@ -66,3 +66,12 @@ model Career {
 	upgrateAt 		DateTime 	@updatedAt
 	subjects 		SubjectAndCareer[]
 }
+
+model SubjectAndCareer {
+	@@map(name: "subject_career")
+	subjectId 		Int
+	subject 		Subject 	@relation(fields: [subjectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	careerId 		Int
+	career 			Career 		@relation(fields: [careerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	@@id([subjectId, careerId])
+}

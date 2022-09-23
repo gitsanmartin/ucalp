@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { professors } from './data/professors.js'
+import { careers } from './data/careers.js'
+
 const prisma = new PrismaClient()
 
 async function main () {

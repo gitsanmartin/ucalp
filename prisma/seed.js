@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { professors } from './data/professors.js'
 import { careers } from './data/careers.js'
+import { subjects } from './data/subjects.js'
 
 const prisma = new PrismaClient()
 
@@ -11,6 +12,10 @@ async function main () {
 
     await prisma.career.createMany({
 		data: careers
+	})
+
+    await prisma.subject.createMany({
+		data: subjects
 	})
 }
 

@@ -1,0 +1,23 @@
+export const subjects = [
+	{"nameSubject": "Papiloscopía y Rastros I", "duration": "Anual", "year": 1, "students": 15},
+	{"nameSubject": "Química Aplicada I", "duration": "Anual", "year": 1, "students": 15},
+	{"nameSubject": "Balística Forense I", "duration": "Anual", "year": 1, "students": 15},
+	{"nameSubject": "Identidad Humana", "duration": "1° Cuatrimestre", "year": 1, "students": 15},
+	{"nameSubject": "Derecho Penal", "duration": "1° Cuatrimestre", "year": 1, "students": 15},
+	{"nameSubject": "xxxxxxxxx", "duration": "xxxxxxxxxxxxxx", "year": 2, "students": 15},
+	{"nameSubject": "Papiloscopía y Rastros II", "duration": "Anual", "year": 2, "students": 15},
+	{"nameSubject": "Química Aplicada II", "duration": "Anual", "year": 2, "students": 15},
+	{"nameSubject": "Balística Forense II", "duration": "Anual", "year": 2, "students": 15},
+	{"nameSubject": "Accidentología Vial I", "duration": "Anual", "year": 2, "students": 15},
+	{"nameSubject": "Técnicas de la Escena del Crimen II", "duration": "Anual", "year": 2, "students": 15},
+	{"nameSubject": "Documentología I", "duration": "Anual", "year": 3, "students": 15},
+	{"nameSubject": "Accidentología Vial II", "duration": "Anual", "year": 3, "students": 15},
+	{"nameSubject": "Tecnología Aplicada", "duration": "Anual", "year": 3, "students": 15},
+	{"nameSubject": "Estadística", "duration": "1° Cuatrimestre", "year": 3, "students": 15},
+	{"nameSubject": "Informática Aplicada", "duration": "1° Cuatrimestre", "year": 3, "students": 15},
+	{"nameSubject": "Toxicología y Química Legal", "duration": "Anual", "year": 4, "students": 15},
+	{"nameSubject": "Documentología II", "duration": "Anual", "year": 4, "students": 15},
+	{"nameSubject": "Metodología de la Investigación Científica", "duration": "1° Cuatrimestre", "year": 4, "students": 15},
+	{"nameSubject": "Medicina Legal", "duration": "1° Cuatrimestre", "year": 4, "students": 15},
+	{"nameSubject": "Inglés", "duration": "1° Cuatrimestre", "year": 4, "students": 15}
+]

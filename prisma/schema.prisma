@@ -57,3 +57,12 @@ model SubjectAndProfessor {
 	upgrateAt 		DateTime 	@updatedAt
 	@@id([subjectId, professorId])
 }
+
+model Career {
+	@@map(name: "career")
+	id 				Int 		@default(autoincrement()) @id
+	nameCareer		String 		@db.VarChar(50)
+	createdAt 		DateTime 	@default(now())
+	upgrateAt 		DateTime 	@updatedAt
+	subjects 		SubjectAndCareer[]
+}

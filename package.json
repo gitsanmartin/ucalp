@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "sistema web de gestión de aulas en un establecimiento",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitsanmartin/ucalp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gitsanmartin/ucalp/issues"
+  },
+  "homepage": "https://github.com/gitsanmartin/ucalp#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

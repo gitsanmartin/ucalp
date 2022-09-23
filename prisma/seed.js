@@ -3,6 +3,7 @@ import { professors } from './data/professors.js'
 import { careers } from './data/careers.js'
 import { subjects } from './data/subjects.js'
 import { classrooms } from './data/classrooms.js'
+import { subjectInProfessor } from './data/subjectsRelations.js'
 
 const prisma = new PrismaClient()
 
@@ -21,6 +22,10 @@ async function main () {
 
     await prisma.classroom.createMany({
 		data: classrooms
+	})
+
+    await prisma.subjectAndProfessor.createMany({
+		data: subjectInProfessor
 	})
 }
 

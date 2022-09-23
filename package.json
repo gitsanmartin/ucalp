@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "sistema web de gestión de aulas en un establecimiento",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

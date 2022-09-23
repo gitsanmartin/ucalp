@@ -86,3 +86,12 @@ model Schedule {
 	upgrateAt 		DateTime 	@updatedAt
 	subjects		SubjectAndSchedule[]
 }
+
+model SubjectAndSchedule {
+	@@map(name: "subject_schedule")
+	subjectId		Int
+	scheduleId		Int
+	subject 		Subject 	@relation(fields: [subjectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	schedule		Schedule	@relation(fields: [scheduleId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	@@id([subjectId, scheduleId])
+}

@@ -10,3 +10,14 @@ datasource db {
 	provider = "mysql"
 	url      = env("DATABASE_URL")
 }
+
+model Classroom {
+	@@map(name: "classroom")
+	id 				Int 		@default(autoincrement()) @id 
+	classroomNumber	Int? 		@unique
+	description 	String
+	createdAt 		DateTime 	@default(now())
+	upgrateAt 		DateTime 	@updatedAt
+	capacity 		Int
+	subjects 		Subject[]
+}

@@ -4,6 +4,9 @@
   "description": "sistema web de gestión de aulas en un establecimiento",
   "main": "index.js",
   "type": "module",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

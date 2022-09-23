@@ -36,3 +36,13 @@ model Subject {
 	careers 		SubjectAndCareer[]
 	schedule		SubjectAndSchedule[]
 }
+
+model Professor {
+	@@map(name: "professor")
+	id 				Int 		@default(autoincrement()) @id 
+	firstName		String 		@db.VarChar(50) @default("")
+	lastName		String 		@db.VarChar(50) @default("")
+	createdAt 		DateTime 	@default(now())
+	upgrateAt 		DateTime 	@updatedAt
+	subjects 		SubjectAndProfessor[]
+}

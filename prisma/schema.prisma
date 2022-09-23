@@ -28,6 +28,7 @@ model Subject {
 	nameSubject		String 		@db.VarChar(50)
 	duration		String 		@db.VarChar(20)
 	year			Int
+	students		Int?		@default(0)
 	createdAt 		DateTime 	@default(now())
 	upgrateAt 		DateTime 	@updatedAt
 	classroom_id 	Int?

@@ -46,3 +46,14 @@ model Professor {
 	upgrateAt 		DateTime 	@updatedAt
 	subjects 		SubjectAndProfessor[]
 }
+
+model SubjectAndProfessor {
+	@@map(name: "subject_professor")
+	subject 		Subject 	@relation(fields: [subjectId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	subjectId 		Int
+	professorId 	Int
+	professor 		Professor 	@relation(fields: [professorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	createdAt 		DateTime 	@default(now())
+	upgrateAt 		DateTime 	@updatedAt
+	@@id([subjectId, professorId])
+}

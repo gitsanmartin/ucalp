@@ -19,5 +19,8 @@
   "homepage": "https://github.com/gitsanmartin/ucalp#readme",
   "dependencies": {
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
   }
 }

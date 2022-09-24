@@ -54,9 +54,9 @@ export const updateClassroom = async (req, res) => {
 		const classroom = await prisma.classroom.update({
 			where: {id: Number(id)},
 			data: {
-				classroomNumber: classroomNumber.toLowerCase(),
+				classroomNumber,
 				description: description.toLowerCase(),
-				capacity: capacity.toLowerCase()
+				capacity
 			}
 		})
 		res.json(classroom)

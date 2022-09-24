@@ -3,21 +3,22 @@ const prisma = new PrismaClient()
 
 export const createProfessor = async (req, res) => {
 	const {firstName, lastName} = req.body
-	const result = await prisma.professor.create({
-		data: {
-			firstName,
-			lastName
-		}
-	})
-	res.json(result)
+	try {
+		const result = await prisma.professor.create({
+			data: {
+				firstName: firstName.toLowerCase(),
+				lastName: lastName.toLowerCase()
+			}
+		})
+		res.json(result)
+		
+	} catch (error) {
+		res.status(500).json(error)
+	}
 }
 
 export const getProfessors = async (req, res) => {
-	// const professors = await prisma.professor.findMany()
-	// res.json(professors)
 	try {
-		
-		// const professors = await prisma.professor.findMany() //Simple 
 		const professors = await prisma.professor.findMany({
 			select: {
 				id: true,
@@ -34,52 +35,58 @@ export const getProfessors = async (req, res) => {
 				}
 			}
 		})
-		
-		// const professors = await prisma.professor.findMany({
-		// 	include: {
-		// 		subjects: {
-		// 			include: {
-		// 				subject: true
-		// 			}
-		// 		}
-		// 	}
-		// })
-
 		res.json(professors) // response [] or {professors}
+
 	} catch (error) {
-		res.status(500).json({
-			message: error
-		})
+		res.status(500).json(error)
 	}
 }
 
 export const getProfessorById = async (req, res) => {
 	const {id} = req.params
-	const professor = await prisma.professor.findUnique({
-		where: {
-			id: Number(id)
-		},
-		include: {
-			subjects: true
-		}
-	})
-	res.json({professor})
+	try {
+		const professor = await prisma.professor.findUnique({
+			where: {
+				id: Number(id)
+			},
+			include: {
+				subjects: true
+			}
+		})
+		res.json(professor)
+		
+	} catch (error) {
+		res.status(500).json(error)
+	}
 }
 
 export const updateProfessor = async (req, res) => {
 	const {id} = req.params
 	const {firstName, lastName} = req.body
-	const professor = await prisma.professor.update({
-		where: {id: Number(id)},
-		data: {firstName, lastName}
-	})
-	res.json(professor)
+	try {
+		const professor = await prisma.professor.update({
+			where: {id: Number(id)},
+			data: {
+				firstName: firstName.toLowerCase(),
+				lastName: lastName.toLowerCase()
+			}
+		})
+		res.json(professor)
+		
+	} catch (error) {
+		res.status(500).json(error)
+	}
 }
 
 export const deleteProfessor = async(req, res) => {
 	const {id} = req.params
-	const professor = await prisma.professor.delete({
-		where: {id: Number(id)}
-	})
-	res.json('Delete')
+	try {
+		await prisma.professor.delete({
+			where: {id: Number(id)}
+		})
+		res.json('Delete professor')
+		
+	} catch (error) {
+		res.status(500).json(error)
+	}
 }

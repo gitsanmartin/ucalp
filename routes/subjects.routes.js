@@ -8,7 +8,7 @@ router.get('/:id', getSubject)
 router.post('/professor', setRelationProfessor)
 router.post('/career', setRelationCareer)
 router.post('/', createSubject)
-router.put('/:id', updateSubject) //set relation classroom in subject
+router.put('/:id', updateSubject)
 router.delete('/:id', deleteSubject)
 
 export default router

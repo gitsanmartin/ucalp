@@ -3,10 +3,6 @@ const prisma = new PrismaClient()
 
 export const getCareers = async (req, res) => { 
     try {
-		// Simple call
-		// const careers = await prisma.career.findMany()
-
-		// get nameCareer
 		const careers = await prisma.career.findMany({
 			include:{
 				subjects: {
@@ -25,7 +21,8 @@ export const getCareers = async (req, res) => {
 		res.json(careers)
 	} catch (error) {
 		res.status(500).json({
-			message: "Err :( "
+			message: "Err :( ",
+			error
 		})
 	}
 }
@@ -40,29 +37,39 @@ export const getCareer = async (req, res) => {
 		})
 		res.json({career})	
 	} catch (error) {
-		res.json(error)
+		res.status(500).json(error)
 	}
 	
 }
 
 export const createCareer = async (req, res) => { 
     const {nameCareer} = req.body
-	const result = await prisma.career.create({
-		data: {
-			nameCareer
-		}
-	})
-	res.json(result)
+	try {
+		const result = await prisma.career.create({
+			data: {
+				nameCareer: nameCareer.toLowerCase()
+			}
+		})
+		res.json(result)
+	} catch (error) {
+		res.status(500).json(error)
+	}
 }
 
 export const updateCareer = async (req, res) => { 
     const {id} = req.params
 	const {nameCareer} = req.body
-	const career = await prisma.career.update({
-		where: {id: Number(id)},
-		data: {nameCareer}
-	})
-	res.json(career)
+	try {
+		const career = await prisma.career.update({
+			where: {id: Number(id)},
+			data: {
+				nameCareer: nameCareer.toLowerCase()
+			}
+		})
+		res.json(career)
+	} catch (error) {
+		res.status(500).json(error)
+	}
 }
 
 export const deleteCareer = async (req, res) => { 
@@ -76,6 +83,6 @@ export const deleteCareer = async (req, res) => {
 		})
 		res.json(`Delete career`)
 	} catch (error) {
-		res.json(error)
+		res.status(500).json(error)
 	}
 }

@@ -15,11 +15,27 @@ model Classroom {
 	@@map(name: "classroom")
 	id				Int 		@default(autoincrement()) @id 
 	classroomNumber	Int? 		@unique
-	description 	String
 	createdAt 		DateTime 	@default(now())
 	upgrateAt 		DateTime 	@updatedAt
 	capacity 		Int
 	subjects 		Subject[]
+	description		ClassroomAndDescription[]
+}
+
+model Description {
+	@@map(name: "description")
+	id				Int			@default(autoincrement()) @id
+	detail			String		@db.VarChar(50)
+	classroom		ClassroomAndDescription[]
+}
+
+model ClassroomAndDescription {
+	@@map(name: "classroom_description")
+	classroomId		Int
+	descriptionId	Int
+	classroom		Classroom	@relation(fields: [classroomId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	description		Description	@relation(fields: [descriptionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	@@id([classroomId, descriptionId])
 }
 
 model Subject {

@@ -31,12 +31,11 @@ export const getClassroom = async (req, res) => {
 }
 
 export const createClassroom = async (req, res) => { 
-	const {classroomNumber, description, capacity} = req.body
+	const {classroomNumber, capacity} = req.body
 	try {
 		const result = await prisma.classroom.create({
 			data: {
 				classroomNumber,
-				description: description.toLowerCase(),
 				capacity
 			}
 		})
@@ -49,13 +48,12 @@ export const createClassroom = async (req, res) => {
 
 export const updateClassroom = async (req, res) => { 
 	const {id} = req.params
-	const {classroomNumber, description, capacity} = req.body
+	const {classroomNumber, capacity} = req.body
 	try {
 		const classroom = await prisma.classroom.update({
 			where: {id: Number(id)},
 			data: {
 				classroomNumber,
-				description: description.toLowerCase(),
 				capacity
 			}
 		})

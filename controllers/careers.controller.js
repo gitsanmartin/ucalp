@@ -73,7 +73,6 @@ export const updateCareer = async (req, res) => {
 }
 
 export const deleteCareer = async (req, res) => { 
-	// consultar si existe en la relacion subjects-careers, y primero eliminar de la relación
 	try {
 		const {id} = req.params
 		await prisma.career.delete({

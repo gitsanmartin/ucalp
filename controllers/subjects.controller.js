@@ -3,24 +3,7 @@ const prisma = new PrismaClient()
 
 export const getSubjects = async (req, res) => { 
 	try {
-		const subjects = await prisma.subject.findMany({
-			select: {
-				id: true,
-				nameSubject: true,
-				duration: true,
-				year: true,
-				careers: {
-					include: {
-						career: {
-							select: {
-								nameCareer: true
-							}
-						}
-					}
-				}
-				
-			}
-		})
+		const subjects = await prisma.subject.findMany()
 		res.json(subjects)
 
 	} catch (error) {
@@ -34,6 +17,11 @@ export const getSubject = async (req, res) => {
 		const subject = await prisma.subject.findUnique({
 			where: {
 				id: Number(id)
+			},
+			include: {
+				professors: true,
+				careers: true,
+				schedule: true
 			}
 		})
 		res.json(subject)
@@ -110,17 +98,47 @@ export const setRelationProfessor = async (req, res) => {
 	}
 }
 
+export const delRelationProfessor = async (req, res) => {
+	const { subject, professor } = req.params
+	try {
+		await prisma.subjectAndProfessor.delete({
+			where: {
+				subjectId: Number(subject),
+				professorId: Number(professor)
+			}
+		})
+		res.json(relation)
+	} catch (error) {
+		res.status(500).json(error)
+	}
+}
+
 export const setRelationCareer = async (req, res) => {
-	const {subjectId, careerId} = req.body
+	const { subject, career } = req.params
 	try {
 		const relation = await prisma.subjectAndCareer.create({
 			data: {
-				subjectId,
-				careerId
+				subjectId: parseInt(subject),
+				careerId: parseInt(career)
 			}
 		})
 		res.json(relation)
 		
+	} catch (error) {
+		res.status(500).json(error)
+	}
+}
+
+export const delRelationCareer = async (req, res) => {
+	const { subject, career } = req.params
+	try {
+		await prisma.subjectAndCareer.delete({
+			where: {
+				subjectId: Number(subject),
+				careerId: Number(career)
+			}
+		})
+		res.json(relation)
 	} catch (error) {
 		res.status(500).json(error)
 	}

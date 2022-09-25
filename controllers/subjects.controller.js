@@ -34,16 +34,6 @@ export const getSubject = async (req, res) => {
 		const subject = await prisma.subject.findUnique({
 			where: {
 				id: Number(id)
-			},
-			select: {
-				name: true,
-				split: true,
-				classroom: {
-					select: {
-						number: true,
-						capacity: true
-					}
-				}
 			}
 		})
 		res.json(subject)
@@ -72,14 +62,16 @@ export const createSubject = async (req, res) => {
 
 export const updateSubject = async (req, res) => { 
 	const {id} = req.params
-	const {nameSubject, duration, year} = req.body
+	const {nameSubject, duration, year, students, classroom_id} = req.body
 	try {
 		const subject = await prisma.subject.update({
 			where: {id: Number(id)},
 			data: {
 				nameSubject: nameSubject.toLowerCase(),
 				duration: duration.toLowerCase(),
-				year
+				year,
+				students,
+				classroom_id
 			}
 		})
 		res.json(subject)
@@ -103,12 +95,12 @@ export const deleteSubject = async (req, res) => {
 }
 
 export const setRelationProfessor = async (req, res) => {
-	const {subjectId, professorId} = req.body
+	const { subject, professor } = req.params
 	try {
 		const relation = await prisma.subjectAndProfessor.create({
 			data: {
-				subjectId,
-				professorID: professorId
+				subjectId: parseInt(subject),
+				professorId: parseInt(professor)
 			}
 		})
 		res.json(relation)

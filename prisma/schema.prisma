@@ -102,6 +102,7 @@ model Schedule {
 	createdAt 		DateTime 	@default(now())
 	upgrateAt 		DateTime 	@updatedAt
 	subjects		SubjectAndSchedule[]
+	@@unique(fields: [startTime, endTime, day], name: "simpleSchedule")
 }
 
 model SubjectAndSchedule {

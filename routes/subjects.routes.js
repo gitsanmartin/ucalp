@@ -8,7 +8,8 @@ import {
 		setRelationProfessor,
 		delRelationProfessor,
 		delRelationCareer,
-		updateSubject 
+		updateSubject,
+		createSchedule
 	} from '../controllers/subjects.controller.js'
 
 const router = Router()
@@ -23,5 +24,7 @@ router.post('/:subject/professor/:professor', setRelationProfessor)
 router.delete('/:subject/professor/:professor', delRelationProfessor)
 router.post('/:subject/career/:career', setRelationCareer)
 router.delete('/:subject/career/:career', delRelationCareer)
+
+router.post('/:subject/schedule/', createSchedule)
 
 export default router

@@ -143,3 +143,46 @@ export const delRelationCareer = async (req, res) => {
 		res.status(500).json(error)
 	}
 }
+
+export const createSchedule = async (req, res) => {
+	const { subject } = req.params
+	const { startTime, endTime, day } = req.body
+
+	// console.log( Number(startTime), Number(endTime), day)
+	try {
+		// buscamos si existe la schedule
+		let result = await prisma.schedule.findUnique({
+			where: {
+				simpleSchedule: {
+					startTime: Number(startTime),
+					endTime: Number(endTime),
+					day
+				}
+			}
+		})
+		
+		if (!result) {
+			// sino existe la schedule, la creamo
+			result = await prisma.schedule.create({
+				data: {
+					startTime: Number(startTime),
+					endTime: Number(endTime),
+					day
+				}
+			})
+		}
+		
+		// crear relación subject-schedule
+		const relation = await prisma.subjectAndSchedule.create({
+			data: {
+				subjectId: Number(subject),
+				scheduleId: result.id
+			}
+		})
+
+		res.json(relation)
+		
+	} catch (error) {
+		res.status(500).json(error)
+	}
+}

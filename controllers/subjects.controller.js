@@ -107,7 +107,7 @@ export const delRelationProfessor = async (req, res) => {
 				professorId: Number(professor)
 			}
 		})
-		res.json(relation)
+		res.json('Delete relation subject & professor')
 	} catch (error) {
 		res.status(500).json(error)
 	}
@@ -138,7 +138,7 @@ export const delRelationCareer = async (req, res) => {
 				careerId: Number(career)
 			}
 		})
-		res.json(relation)
+		res.json('Delete relation subject & career')
 	} catch (error) {
 		res.status(500).json(error)
 	}
@@ -182,6 +182,24 @@ export const createSchedule = async (req, res) => {
 
 		res.json(relation)
 		
+	} catch (error) {
+		res.status(500).json(error)
+	}
+}
+
+export const deleteSchedule = async (req, res) => {
+	const { subject, schedule } = req.params
+	try {
+		await prisma.subjectAndSchedule.delete({
+			where: {
+				subjectId_scheduleId: {
+					subjectId: Number(subject),
+					scheduleId: Number(schedule)
+				}
+			}
+		})
+		res.json('Delete relation subject & schedule')
+
 	} catch (error) {
 		res.status(500).json(error)
 	}
